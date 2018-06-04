@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <input type="text">
+        <input type="text">
+        <input type="text">
+        <input type="text">
+        <button onclick="Total()">提交</button>
+        <ul id="list">
+         
+        </ul>
+    </div>
+    <script src="tool/jquery.js"></script>
+    <script>
+    function Total() {
+        var numArr = []; // 定义一个空数组
+        var _input = $('#box').find(':text'); // 获取所有文本框
+        for (var i = 0; i < _input.length; i++) {
+            numArr.push(_input.eq(i).val()); // 将文本框的值添加到数组中
+        }
+        console.info(numArr);
+        var item = document.getElementById("list");
+        numArr.forEach(function(v,i){
+        item.innerHTML+="<li>"+v+"</li>"
+       })
+    }
+
+    </script>
+</body>
+</html>
