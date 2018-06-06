@@ -1,0 +1,166 @@
+<!DOCTYPE html> 
+<html> 
+<head lang="en"> 
+  <meta charset="UTF-8"> 
+  <title></title> 
+</head> 
+<body> 
+<div> 
+  业态 <select name="item1" id="item1"> 
+  <option>--业态--</option> 
+  <option>总部</option><option>沃尔玛购物广场</option><option>山姆会员商店</option> 
+  </select> 
+</div> 
+<div> 
+  省份： <select name="item2" id="item2"> 
+  <option>--省份--</option> 
+</select> 
+</div> 
+<div> 
+  城市： <select name="item3" id="item3"> 
+  <option>--城市--</option> 
+</select> 
+</div>
+<div> 
+  部门分类： <select name="item4" id="item4"> 
+  <option>--部门分类--</option> 
+</select> 
+</div> 
+<script> 
+  var sf= [ 
+      ['全国'], 
+      ['沃尔玛购物广场-广东','沃尔玛购物广场-广西','沃尔玛购物广场-湖南'], 
+      ['山姆会员商店-广东','山姆会员商店-广西','山姆会员商店-湖南'] 
+  ]; 
+  var city= [ 
+    [ 
+      ['广州','深圳','贵港','惠州']
+    ], 
+    [ 
+      ['沃尔玛购物广场-广东-深圳','沃尔玛购物广场-广东-广州','沃尔玛购物广场-广东-惠州','沃尔玛购物广场-广东-佛山'], 
+      ['沃尔玛购物广场-广西-桂林','沃尔玛购物广场-广西-贵港','沃尔玛购物广场-广西-南宁','沃尔玛购物广场-广西-百色'], 
+      ['沃尔玛购物广场-湖南-长沙','沃尔玛购物广场-湖南-株洲','沃尔玛购物广场-湖南-吉首','沃尔玛购物广场-湖南-常德']
+    
+    ], 
+    [ 
+      ['山姆会员商店-广东-深圳','山姆会员商店-广东-广州','山姆会员商店-广东-惠州','山姆会员商店-广东-佛山'], 
+      ['山姆会员商店-广西-桂林','山姆会员商店-广西-贵港','山姆会员商店-广西-南宁','山姆会员商店-广西-百色'], 
+      ['山姆会员商店-湖南-长沙','山姆会员商店-湖南-株洲','山姆会员商店-湖南-吉首','山姆会员商店-湖南-常德']
+    ]
+  ]; 
+  var email=[
+    [
+      [
+        ['广州@qq.com'],
+        ['深圳@qq.com'],
+        ['贵港@qq.com'],
+        ['惠州@qq.com']
+      ]
+    ],
+    [
+      [
+        ['沃尔玛购物广场-广东-深圳@qq.com'],
+        ['沃尔玛购物广场-广东-广州@qq.com'],
+        ['沃尔玛购物广场-广东-惠州@qq.com'],
+        ['沃尔玛购物广场-广东-佛山@qq.com']
+      ],
+      [
+        ['沃尔玛购物广场-广西-桂林@qq.com'],
+        ['沃尔玛购物广场-广西-贵港@qq.com'],
+        ['沃尔玛购物广场-广西-南宁@qq.com'],
+        ['沃尔玛购物广场-广西-百色@qq.com']
+      ],
+      [
+        ['沃尔玛购物广场-湖南-长沙@qq.com'],
+        ['沃尔玛购物广场-湖南-株洲@qq.com'],
+        ['沃尔玛购物广场-湖南-吉首@qq.com'],
+        ['沃尔玛购物广场-湖南-常德@qq.com']
+      ]
+    ],
+    [
+      [
+        ['山姆会员商店-广东-深圳@qq.com'],
+        ['山姆会员商店-广东-广州@qq.com'],
+        ['山姆会员商店-广东-惠州@qq.com'],
+        ['山姆会员商店-广东-佛山@qq.com']
+      ], 
+      [
+        ['山姆会员商店-广西-桂林@qq.com'],
+        ['山姆会员商店-广西-贵港@qq.com'],
+        ['山姆会员商店-广西-南宁@qq.com'],
+        ['山姆会员商店-广西-百色@qq.com']
+      ], 
+      [
+        ['山姆会员商店-湖南-长沙@qq.com'],
+        ['山姆会员商店-湖南-株洲@qq.com'],
+        ['山姆会员商店-湖南-吉首@qq.com'],
+        ['山姆会员商店-湖南-常德@qq.com']
+      ]
+    ]
+  ]
+
+document.getElementById("item1").onchange = function(){ 
+  //获取选择的选项的索引值（从1开始的，没有返回-1） 
+  var selectNum = this.selectedIndex; 
+console.log(selectNum);
+  //清空原来的选项 
+  document.getElementById("item2").length=1; 
+  document.getElementById("item3").length=1; 
+  document.getElementById("item4").length=1; 
+  if (!sf[selectNum-1]) return;
+  //循环添加子节点 
+  for(var i=0;i<sf[selectNum-1].length;i++){ 
+
+    //创建元素节点 
+    var node =document.createElement("OPTION"); 
+
+    //创建文本节点 
+    var text = document.createTextNode(sf[selectNum-1][i]); 
+    node.appendChild(text); 
+    document.getElementById("item2").appendChild(node); 
+  } 
+}; 
+
+
+  document.getElementById("item2").onchange = function(){ 
+    //获取选项的索引
+    var selectSfNum = this.selectedIndex; 
+    var selectYtNum = document.getElementById("item1").selectedIndex; 
+  console.log(selectSfNum);
+  //清空原来的选项 
+    document.getElementById("item3").length=1;
+    document.getElementById("item4").length=1;
+
+    for(var i=0;i<city[selectYtNum-1][selectSfNum-1].length;i++){ 
+      //创建元素节点
+      var node =document.createElement("OPTION");
+
+      //创建文本节点
+      var text = document.createTextNode(city[selectYtNum-1][selectSfNum-1][i]); 
+      node.appendChild(text); 
+      document.getElementById("item3").appendChild(node); 
+    } 
+  };
+
+  document.getElementById("item3").onchange = function(){ 
+    //获取选项的索引(从1开始)
+    var selectCsNum = document.getElementById("item3").selectedIndex;
+  var selectSfNum = document.getElementById("item2").selectedIndex; 
+    var selectCityNum = document.getElementById("item1").selectedIndex; 
+  console.log(selectSfNum, selectCityNum, selectCsNum);
+    //清空原来的选项 
+    document.getElementById("item4").length=1;
+
+    for(var i=0;i<email[selectCityNum-1][selectSfNum-1][selectCsNum-1].length;i++){ 
+      var node =document.createElement("OPTION"); 
+      var text = document.createTextNode(email[selectCityNum-1][selectSfNum-1][selectCsNum-1][i]); 
+      node.appendChild(text); 
+      document.getElementById("item4").appendChild(node);
+      document.getElementById("item4").options[1].selected=true;
+
+    } 
+  } 
+
+</script> 
+</body> 
+</html> 
